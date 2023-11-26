@@ -24,8 +24,8 @@ while True:
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
 
 	client.publish("luminant", luminant, qos=0) #조도 퍼블리시
-	client.publish("temp_humid", temp, qos=0) #온도 퍼블리시
-	client.publish("temp_humid", humid, qos=0) #습도 퍼블리시
+	client.publish("temperature", temp, qos=0) #온도 퍼블리시
+	client.publish("humidity", humid, qos=0) #습도 퍼블리시
 
 	time.sleep(1)
 
