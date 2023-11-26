@@ -4,9 +4,9 @@ import lumi
 import temp_humid
 
 def on_connect(client, userdata, flag, rc): #브로커에 연결시
-	pass
+	print("connected to broker")
 def on_message(client, userdata, msg) : #브로커 연결되고 
-	pass
+	print("on_message connected to broker")
 
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
 
@@ -22,13 +22,12 @@ client.loop_start() # 메시지 루프를 실행하는 스레드 생성
 while True:
 	temp = temp_humid.getTemperature(temp_humid.sensor) #온도 읽기
 	humid = temp_humid.getHumidity(temp_humid.sensor) #습도 읽기
-	luminant = lumi.mpc.read_adc(0) #조도 읽기
+	luminant = lumi.mcp.read_adc(0) #조도 읽기
 
 	client.publish("luminant", luminant, qos=0) #조도 퍼블리시
 	client.publish("temperature", temp, qos=0) #온도 퍼블리시
 	client.publish("humidity", humid, qos=0) #습도 퍼블리시
 
-	
 	time.sleep(1)
 
 
