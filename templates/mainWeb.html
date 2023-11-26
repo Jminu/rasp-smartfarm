@@ -28,11 +28,31 @@
          <hr>
          <h3>화분 상태</h3>
          <hr>
-         <form id="subscribe-form">
-            <input type="button" onclick="subscribe('luminant')" value="조도 측정"> <!--클릭시 조도 구독-->
-            <input type="button" onclick="subscribe('temperature')" value="온도 측정"> <!--클륵시 온도, 습도 구독-->
-            <input type="button" onclick="subscribe('humidity')" value="습도 측정"> <!--클륵시 온도, 습도 구독-->
-         </form>
+         <div style="display:flex;">
+            <!-- 첫 번째 열 -->
+            <div style="flex:1;">
+               <h3>조도</h3>
+               <form id="luminant-form">
+                  <input type="button" onclick="subscribe('luminant')" value="조도 측정">
+               </form>
+            </div>
+   
+            <!-- 두 번째 열 -->
+            <div style="flex:1;">
+               <h3>온도</h3>
+               <form id="temperature-form">
+                  <input type="button" onclick="subscribe('temperature')" value="온도 측정">
+               </form>
+            </div>
+   
+            <!-- 세 번째 열 -->
+            <div style="flex:1;">
+               <h3>습도</h3>
+               <form id="humidity-form">
+                  <input type="button" onclick="subscribe('humidity')" value="습도 측정">
+               </form>
+            </div>
+         </div>
          <div id="messages"></div>
    </body>
 </html>
