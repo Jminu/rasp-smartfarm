@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>웹소켓으로 MQTT 브로커에 접속</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js" type="text/javascript"></script>
+      <script src= "./static/mqttio3.js" type="text/javascript"></script>
+      <script>
+            window.addEventListener("load", function () {
+                // http://224..129:8080/에서 224...의 IP만 끊어내는 코드
+                var url = new String(document.location);
+                ip = (url.split("//"))[1]; // ip = "224...:8080/"
+                ip = (ip.split(":"))[0]; // ip = "224..."
+                document.getElementById("broker").value = ip
+            });
+      </script>
+   </head>
+   <body>
+         <h3>Raspberry 제어 및 모니터링</h3>
+         <hr>
+         <form id="connection-form">
+            <b>브로커 IP:</b>
+            <input id="broker" type="text" name="broker" value=""><br>
+            <b>포트 번호 : 9001</b><br>
+            <input type="button" onclick="startConnect()" value="Connect"> <!--클릭시 브로커에 연결-->
+            <input type="button" onclick="startDisconnect()" value="Disconnect"> <!--클릭시 브로커 연결 해제-->
+         </form>
+         <hr>
+         <h3>화분 상태</h3>
+         <hr>
+         <form id="subscribe-form">
+            <input type="button" onclick="subscribe('luminant')" value="측정시작"> <!--클릭시 조도 구독-->
+            <input type="button" onclick="subscribe('temp_humid')" value="측정시작"> <!--클륵시 온도, 습도 구독-->
+         </form>
+         <div id="messages"></div>
+   </body>
+</html>
