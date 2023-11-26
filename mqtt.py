@@ -22,7 +22,7 @@ client.loop_start() # 메시지 루프를 실행하는 스레드 생성
 while True:
 	temp = temp_humid.getTemperature(temp_humid.sensor) #온도 읽기
 	humid = temp_humid.getHumidity(temp_humid.sensor) #습도 읽기
-	luminant = lumi.read_adc(0) #조도 읽기
+	luminant = lumi.mpc.read_adc(0) #조도 읽기
 
 	client.publish("luminant", luminant, qos=0) #조도 퍼블리시
 	client.publish("temperature", temp, qos=0) #온도 퍼블리시
