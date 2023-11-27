@@ -27,6 +27,12 @@ function connect() { // 브로커에 접속하는 함수
 	});
 }
 
+// 브로커로의 접속이 성공할 때 호출되는 함수
+function onConnect() {
+	document.getElementById("messages").innerHTML += '<span>connected' + '</span><br/>';
+	connectionFlag = true; // 연결 상태로 설정
+}
+
 function handleSensorValue(sensorType, value) {
 	var columnId = sensorType + "-column";
 	var columnDiv = document.getElementById(columnId);
@@ -43,12 +49,6 @@ function handleSensorValue(sensorType, value) {
 	   }
 	};
  }
-
-// 브로커로의 접속이 성공할 때 호출되는 함수
-function onConnect() {
-	document.getElementById("messages").innerHTML += '<span>connected' + '</span><br/>';
-	connectionFlag = true; // 연결 상태로 설정
-}
 
 function subscribe(topic) {
 	if(connectionFlag != true) { // 연결되지 않은 경우
