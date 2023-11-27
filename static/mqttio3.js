@@ -44,20 +44,17 @@ function handleSensorValue(sensorType, value) {
 	columnDiv.appendChild(valueDiv);
  }
 
- let previousOnMessageArrived = null;
  function subscribeAndHandle(sensorType) {
-	subscribe(sensorType);
+    subscribe(sensorType);
 
-	// 각각의 센서에 대한 새로운 onMessageArrived 이벤트 핸들러 생성
+    // 새로운 센서 데이터를 처리하는 콜백 함수 등록
+    client.subscribe(sensorType);
     client.onMessageArrived = function (message) {
         if (message.destinationName === sensorType) {
             handleSensorValue(sensorType, message.payloadString);
         }
-
-        // 다시 원래의 onMessageArrived로 되돌리기
-        client.onMessageArrived = previousOnMessageArrived;
     };
- }
+}
 
 function subscribe(topic) {
 	if(connectionFlag != true) { // 연결되지 않은 경우
