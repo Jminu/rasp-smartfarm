@@ -30,7 +30,7 @@
          <hr>
          <div style="display:flex;">
             <!-- 첫 번째 열 -->
-            <div style="flex:1;">
+            <div id="luminant-column" style="flex:1;">
                <h3>조도</h3>
                <form id="luminant-form">
                   <input type="button" onclick="subscribeAndHandle('luminant')" value="조도 측정">
@@ -38,7 +38,7 @@
             </div>
    
             <!-- 두 번째 열 -->
-            <div style="flex:1;">
+            <div id="temperature-column" style="flex:1;">
                <h3>온도</h3>
                <form id="temperature-form">
                   <input type="button" onclick="subscribeAndHandle('temperature')" value="온도 측정">
@@ -46,7 +46,7 @@
             </div>
    
             <!-- 세 번째 열 -->
-            <div style="flex:1;">
+            <div id="humidity-column" style="flex:1;">
                <h3>습도</h3>
                <form id="humidity-form">
                   <input type="button" onclick="subscribeAndHandle('humidity')" value="습도 측정">
