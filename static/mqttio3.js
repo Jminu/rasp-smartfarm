@@ -110,7 +110,7 @@ function onMessageArrived(msg) { // 매개변수 msg는 도착한 MQTT 메시지
 	   // 다른 센서 타입에 대한 처리 추가
 	}
 
-	document.getElementById("message").scrollTop = 0; //맨 위에서부터 출력되도록
+	document.getElementById("messages").scrollTop = 0; //맨 위에서부터 출력되도록
 }
 
 // disconnection 버튼이 선택되었을 때 호출되는 함수
