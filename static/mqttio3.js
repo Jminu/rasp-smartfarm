@@ -102,9 +102,15 @@ function onMessageArrived(msg) { // 매개변수 msg는 도착한 MQTT 메시지
 	// 각 센서 타입에 따라 다른 열에 출력
 	if (sensorType === "luminant") {
 	   handleSensorValue("luminant", value);
+	   var messagesDiv = document.getElementById("messages");
+       messagesDiv.innerHTML = '<span>토픽 : ' + sensorType + ' | ' + value + '</span><br/>' + messagesDiv.innerHTML;
 	} else if (sensorType === "temperature") {
+	   var messagesDiv = document.getElementById("messages");
+       messagesDiv.innerHTML = '<span>토픽 : ' + sensorType + ' | ' + value + '</span><br/>' + messagesDiv.innerHTML;
 	   handleSensorValue("temperature", value);
 	} else if (sensorType === "humidity") {
+	   var messagesDiv = document.getElementById("messages");
+       messagesDiv.innerHTML = '<span>토픽 : ' + sensorType + ' | ' + value + '</span><br/>' + messagesDiv.innerHTML;
 	   handleSensorValue("humidity", value);
 	} else {
 	   // 다른 센서 타입에 대한 처리 추가
