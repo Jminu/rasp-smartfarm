@@ -27,6 +27,23 @@ function connect() { // 브로커에 접속하는 함수
 	});
 }
 
+function handleSensorValue(sensorType, value) {
+	var columnId = sensorType + "-column";
+	var columnDiv = document.getElementById(columnId);
+	var valueDiv = document.createElement("div");
+	valueDiv.innerHTML = "<b>" + sensorType + ":</b> " + value;
+	columnDiv.appendChild(valueDiv);
+ }
+
+ function subscribeAndHandle(sensorType) {
+	subscribe(sensorType);
+	client.onMessageArrived = function (message) {
+	   if (message.destinationName === sensorType) {
+		  handleSensorValue(sensorType, message.payloadString);
+	   }
+	};
+ }
+
 // 브로커로의 접속이 성공할 때 호출되는 함수
 function onConnect() {
 	document.getElementById("messages").innerHTML += '<span>connected' + '</span><br/>';
