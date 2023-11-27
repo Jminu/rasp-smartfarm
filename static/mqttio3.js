@@ -90,7 +90,19 @@ function onConnectionLost(responseObject) { // responseObject는 응답 패킷
 function onMessageArrived(msg) { // 매개변수 msg는 도착한 MQTT 메시지를 담고 있는 객체
 	console.log("onMessageArrived: " + msg.payloadString);
 	// 도착한 메시지 출력
-	document.getElementById("messages").innerHTML += '<span>토픽 : ' + msg.destinationName + ' | ' + msg.payloadString + '</span><br/>';
+	var sensorType = msg.destinationName;
+	var value = msg.payloadString;
+ 
+	// 각 센서 타입에 따라 다른 열에 출력
+	if (sensorType === "luminant") {
+	   handleSensorValue("luminant", value);
+	} else if (sensorType === "temperature") {
+	   handleSensorValue("temperature", value);
+	} else if (sensorType === "humidity") {
+	   handleSensorValue("humidity", value);
+	} else {
+	   // 다른 센서 타입에 대한 처리 추가
+	}
 }
 
 // disconnection 버튼이 선택되었을 때 호출되는 함수
