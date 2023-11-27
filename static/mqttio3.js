@@ -48,8 +48,6 @@ function handleSensorValue(sensorType, value) {
  function subscribeAndHandle(sensorType) {
 	subscribe(sensorType);
 
-	previousOnMessageArrived = client.onMessageArrived;
-	
 	// 각각의 센서에 대한 새로운 onMessageArrived 이벤트 핸들러 생성
     client.onMessageArrived = function (message) {
         if (message.destinationName === sensorType) {
