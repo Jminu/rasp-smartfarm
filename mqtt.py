@@ -31,21 +31,21 @@ while True:
 		#조도가 10 미만으로 나오면, 경고메세지 나오고 생장용 LED킨다
 		client.publish("luminant", "너무 어둡습니다. LED를 킵니다.", qos=0)
 	else: #아니면 현재 조도 출력
-		client.publish("luminant", "현재 조도 : "+luminant, qos=0)
+		client.publish("luminant", "현재 조도 : "+str(luminant), qos=0)
 
 	#습도
 	if(humid < 10):
 		#건조하면 경고메세지 나오고 물 펌프 작동
 		client.publish("humidity", "수분이 부족합니다. 물 펌프 작동합니다", qos=0)
 	else: #아니면 현재 습도 출력
-		client.publish("humidity", "현재 습도 : "+humid, qos=0)
+		client.publish("humidity", "현재 습도 : "+str(humid), qos=0)
 
 	#온도
 	if temp < 5:
 		#온도가 5미만이면 LED히터 키고, 경고메세지 출력
 		client.publish("temperature", "온도가 너무 높습니다. 히터 작동.", qos=0)
 	else: #아니면 현재 온도 출력
-		client.publish("temperature", "현재 온도 : "+temp, qos=0) #온도 퍼블리시
+		client.publish("temperature", "현재 온도 : "+str(temp), qos=0) #온도 퍼블리시
 
 	time.sleep(1)
 
