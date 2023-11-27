@@ -29,8 +29,11 @@ function connect() { // 브로커에 접속하는 함수
 
 // 브로커로의 접속이 성공할 때 호출되는 함수
 function onConnect() {
-	document.getElementById("messages").innerHTML += '<span>connected' + '</span><br/>';
-	connectionFlag = true; // 연결 상태로 설정
+    document.getElementById("messages").innerHTML += '<span>connected' + '</span><br/>';
+    connectionFlag = true; // 연결 상태로 설정
+
+    // 초기화
+    previousOnMessageArrived = client.onMessageArrived;
 }
 
 function handleSensorValue(sensorType, value) {
@@ -41,25 +44,20 @@ function handleSensorValue(sensorType, value) {
 	columnDiv.appendChild(valueDiv);
  }
 
-
  let previousOnMessageArrived = null;
-
  function subscribeAndHandle(sensorType) {
 	subscribe(sensorType);
 
-	//현재 onMessageArrived를 저장
 	previousOnMessageArrived = client.onMessageArrived;
-
-	// 새로운 onMessageArrived를 등록
+	
+	// 각각의 센서에 대한 새로운 onMessageArrived 이벤트 핸들러 생성
     client.onMessageArrived = function (message) {
         if (message.destinationName === sensorType) {
             handleSensorValue(sensorType, message.payloadString);
         }
 
-        // 이전에 등록된 이벤트 핸들러를 호출
-        if (previousOnMessageArrived) {
-            previousOnMessageArrived(message);
-        }
+        // 다시 원래의 onMessageArrived로 되돌리기
+        client.onMessageArrived = previousOnMessageArrived;
     };
  }
 
