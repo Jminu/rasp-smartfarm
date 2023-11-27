@@ -41,13 +41,26 @@ function handleSensorValue(sensorType, value) {
 	columnDiv.appendChild(valueDiv);
  }
 
+
+ let previousOnMessageArrived = null;
+
  function subscribeAndHandle(sensorType) {
 	subscribe(sensorType);
-	client.onMessageArrived = function (message) {
-	   if (message.destinationName === sensorType) {
-		  handleSensorValue(sensorType, message.payloadString);
-	   }
-	};
+
+	//현재 onMessageArrived를 저장
+	previousOnMessageArrived = client.onMessageArrived;
+
+	// 새로운 onMessageArrived를 등록
+    client.onMessageArrived = function (message) {
+        if (message.destinationName === sensorType) {
+            handleSensorValue(sensorType, message.payloadString);
+        }
+
+        // 이전에 등록된 이벤트 핸들러를 호출
+        if (previousOnMessageArrived) {
+            previousOnMessageArrived(message);
+        }
+    };
  }
 
 function subscribe(topic) {
