@@ -42,6 +42,8 @@ function handleSensorValue(sensorType, value) {
 	var valueDiv = document.createElement("div");
 	valueDiv.innerHTML = "<b>" + sensorType + ":</b> " + value;
 	columnDiv.appendChild(valueDiv);
+
+	document.getElementById("messages").scrollTop = 0;
  }
 
  function subscribeAndHandle(sensorType) {
