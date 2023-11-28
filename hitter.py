@@ -5,7 +5,6 @@ import RPi.GPIO as GPIO
 def init():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-
 def setInOut(pin, in_out):
     if in_out == "in":
         GPIO.setup(pin, GPIO.IN)

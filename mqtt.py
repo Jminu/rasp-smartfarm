@@ -3,6 +3,7 @@ import paho.mqtt.client as mqtt
 import lumi
 import temp_humid
 import hitter
+import plantled
 import camera
 import waterpump
 
@@ -33,8 +34,10 @@ while True:
 	#조도
 	if(luminant < 10):
 		#조도가 10 미만으로 나오면, 경고메세지 나오고 생장용 LED킨다
+		plantled.led_on_off(6, 1)
 		client.publish("luminant", "너무 어둡습니다. LED를 킵니다.", qos=0)
-	else: #아니면 현재 조도 출력
+	else: #아니면 현재 조도 출력하고 생장용 LED 끈다
+		plantled.led_on_off(6, 0)
 		client.publish("luminant", "현재 조도 : "+str(luminant), qos=0)
 
 	#습도
