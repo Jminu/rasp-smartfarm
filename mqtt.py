@@ -42,7 +42,7 @@ while True:
 	humid = temp_humid.getHumidity(temp_humid.sensor) #습도 읽기
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
 
-	#10초마다 촬영
+	#5초마다 촬영
 	if (count % 5) == 0:
 		camera.shot_camera(count)
 	else:
