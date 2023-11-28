@@ -4,8 +4,8 @@ import time
 camera = None
 
 def init_camera():
+    global camera
     camera = cv2.VideoCapture(0, cv2.CAP_V4L)
-    count = 0
 
 def shot_camera(count):
     image_folder = '/home/pi/smartplanter/rasp-smartfarm/image'
