@@ -1,9 +1,8 @@
-import serial
+import serial as pyserial
 import time
 
-usb_port = '/dev/ttyAMA0' #라즈베리파이의 우측 하단 포트번호 tty1이다
-
-ser = serial.Serial(usb_port, 9600, timeout=1)
+usb_port = '/dev/ttyAMA0' #라즈베리파이의 우측 하단 연결된 포트 넘버
+ser = pyserial.Serial(usb_port, 9600, timeout=1)
 
 def turn_on_pump():
     ser.write(b'TURN_ON')
