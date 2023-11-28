@@ -28,6 +28,8 @@ plantled.init()
 plantled.setInOut(6, "out") #생장용LED는 green색이다
 
 
+count = 0
+
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
 while True:
 	temp = temp_humid.getTemperature(temp_humid.sensor) #온도 읽기
@@ -35,11 +37,10 @@ while True:
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
 
 	#10초마다 촬영
-	camera.init_camera()
-	if (camera.count / 10) == 1:
-		camera.shot_camera()
-		camera.count = 0
-
+	
+	if (count % 0) == 0:
+		camera.init_camera()
+		camera.shot_camera(count)
 
 	#조도
 	if(luminant < 10):
@@ -66,6 +67,7 @@ while True:
 		hitter.led_on_off(5, 0)
 		client.publish("temperature", "현재 온도 : "+str(temp), qos=0) #온도 퍼블리시
 
+	count += 1
 	time.sleep(1)
 
 
