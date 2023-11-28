@@ -48,12 +48,32 @@ function handleSensorValue(sensorType, value) {
     subscribe(sensorType);
 
     // 새로운 센서 데이터를 처리하는 콜백 함수 등록
+	/*
     client.subscribe(sensorType);
     client.onMessageArrived = function (message) {
         if (message.destinationName === sensorType) {
             handleSensorValue(sensorType, message.payloadString);
         }
     };
+	*/
+	// 이미 등록된 콜백 함수가 없으면 등록
+    if (!client.onMessageArrived) {
+        client.onMessageArrived = function (message) {
+            var currentSensorType = message.destinationName;
+            var currentValue = message.payloadString;
+            
+            // 각 센서 타입에 따라 다른 열에 출력
+            if (currentSensorType === "luminant") {
+                handleSensorValue("luminant", currentValue);
+            } else if (currentSensorType === "temperature") {
+                handleSensorValue("temperature", currentValue);
+            } else if (currentSensorType === "humidity") {
+                handleSensorValue("humidity", currentValue);
+            } else {
+                // 다른 센서 타입에 대한 처리 추가
+            }
+        };
+    }
 }
 
 function subscribe(topic) {
