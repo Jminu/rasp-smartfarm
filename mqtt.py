@@ -43,13 +43,13 @@ while True:
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
 
 	#10초마다 촬영
-	if (count % 10) == 0:
+	if (count % 5) == 0:
 		camera.shot_camera(count)
 	else:
 		pass
 
 	#이미지 10장 찍힐 때 마다
-	if (count % 100) == 0:
+	if (count % 50) == 0:
 		video.images_to_video('/home/pi/smartplanter/rasp-smartfarm/image/', video_name, fps)
 
 
