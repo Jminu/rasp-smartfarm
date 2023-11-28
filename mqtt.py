@@ -5,6 +5,7 @@ import temp_humid #구현 완료
 import hitter #구현 완료
 import plantled #구현 완료
 import camera #구현 완료
+import video
 import waterpump #모터 작동 안됨
 
 def on_connect(client, userdata, flag, rc): #브로커에 연결시
@@ -27,7 +28,12 @@ hitter.setInOut(5, "out") #히터LED는 red색이다
 plantled.init()
 plantled.setInOut(6, "out") #생장용LED는 green색이다
 
+#비디오 관련 설정
+image_forder = '/home/pi/smartplanter/rasp-smartfarm/image/'
+video_name = '/home/pi/smartplanter/rasp-smartfarm/video/result.mp4'
+fps = 30
 
+#사진촬영 초 세기위해서
 count = 0
 
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
@@ -37,11 +43,15 @@ while True:
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
 
 	#10초마다 촬영
-	
 	if (count % 10) == 0:
 		camera.shot_camera(count)
 	else:
 		pass
+
+	#이미지 10장 찍힐 때 마다
+	if (count % 100) == 0:
+		video.images_to_video('/home/pi/smartplanter/rasp-smartfarm/image/', video_name, fps)
+		
 
 	#조도
 	if(luminant < 10):
