@@ -41,6 +41,8 @@ while True:
 	if (count % 10) == 0:
 		camera.init_camera()
 		camera.shot_camera(count)
+	else:
+		pass
 
 	#조도
 	if(luminant < 10):
