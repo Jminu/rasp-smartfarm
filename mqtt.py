@@ -20,6 +20,10 @@ client.on_message = on_message
 client.connect(ip, 1883) # 브로커에 연결
 client.loop_start() # 메시지 루프를 실행하는 스레드 생성
 
+hitter.init()
+hitter.setInOut(5, "out") #히터LED는 red색이다
+
+
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
 while True:
 	temp = temp_humid.getTemperature(temp_humid.sensor) #온도 읽기
@@ -41,10 +45,12 @@ while True:
 		client.publish("humidity", "현재 습도 : "+str(humid), qos=0)
 
 	#온도
-	if temp < 5:
-		#온도가 5미만이면 LED히터 키고, 경고메세지 출력
+	if temp < 20:
+		#온도가 20도미만이면 LED히터 키고, 경고메세지 출력
+		hitter.led_on_off(5, 1)
 		client.publish("temperature", "온도가 너무 높습니다. 히터 작동.", qos=0)
-	else: #아니면 현재 온도 출력
+	else: #아니면 현재 온도 출력하고, 히터 끈다
+		hitter.led_on_off(5, 0)
 		client.publish("temperature", "현재 온도 : "+str(temp), qos=0) #온도 퍼블리시
 
 	time.sleep(1)
