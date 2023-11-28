@@ -14,7 +14,7 @@ def shot_camera(count):
 
     ret, image = camera.read()
     if(ret == True):
-        cv2.imwrite(image_path, image) # OpenCV 함수로 이미지를 파일에 저장
+        cv2.imwrite(image_folder, image) # OpenCV 함수로 이미지를 파일에 저장
     else:
         print("camera error!")
 
