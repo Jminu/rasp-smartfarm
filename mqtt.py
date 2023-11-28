@@ -24,6 +24,9 @@ client.loop_start() # 메시지 루프를 실행하는 스레드 생성
 hitter.init()
 hitter.setInOut(5, "out") #히터LED는 red색이다
 
+plantled.init()
+plantled.setInOut(6, "out") #생장용LED는 green색이다
+
 
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
 while True:
