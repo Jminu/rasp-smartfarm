@@ -1,4 +1,4 @@
-import serial
+import pyserial
 import time
 
 usb_port = '/dev/ttyAMA0' #라즈베리파이의 우측 하단 포트번호 tty1이다
