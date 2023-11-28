@@ -1,11 +1,11 @@
 import time
 import paho.mqtt.client as mqtt
-import lumi
-import temp_humid
-import hitter
-import plantled
-import camera
-import waterpump
+import lumi #구현 완료
+import temp_humid #구현 완료
+import hitter #구현 완료
+import plantled #구현 완료
+import camera #구현 완료
+import waterpump #모터 작동 안됨
 
 def on_connect(client, userdata, flag, rc): #브로커에 연결시
 	print("connected to broker")
@@ -33,6 +33,13 @@ while True:
 	temp = temp_humid.getTemperature(temp_humid.sensor) #온도 읽기
 	humid = temp_humid.getHumidity(temp_humid.sensor) #습도 읽기
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
+
+	#10초마다 촬영
+	camera.init_camera()
+	if (camera.count / 10) == 1:
+		camera.shot_camera()
+		camera.count = 0
+
 
 	#조도
 	if(luminant < 10):
