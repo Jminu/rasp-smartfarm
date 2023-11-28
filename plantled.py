@@ -11,7 +11,7 @@ def setInOut(pin, in_out):
     if in_out == "out":
         GPIO.setup(pin, GPIO.OUT)
 
-# pin에 연결된 생장LED에 0 or 1값을 출력하여 LED 끄고 킨다
+# pin에 연결된 생장LED에 0 or 1값을 출력하여 LED 끄고 킨다
 def led_on_off(pin, value):
     GPIO.output(pin, value)
 
