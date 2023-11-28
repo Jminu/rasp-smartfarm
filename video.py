@@ -7,7 +7,7 @@ def images_to_video(image_folder, video_name, fps):
     height, width, layers = frame.shape #프레임 설정
 
     #비디오 파일 생성, 코덱, mp4파일 생성
-    video = cv2.VideoWriter(video_name, cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height))
+    video = cv2.VideoWriter(video_name, cv2.VideoWriter_fourcc(*"XVID"), fps, (width, height))
 
     #이미지들을 비디오 파일에 하나씩 넣음
     for image in images:
@@ -16,4 +16,3 @@ def images_to_video(image_folder, video_name, fps):
     cv2.destroyAllWindows()
     video.release()
 
-    
