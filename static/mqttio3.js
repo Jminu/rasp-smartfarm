@@ -31,11 +31,9 @@ function connect() { // 브로커에 접속하는 함수
 function onConnect() {
     document.getElementById("messages").innerHTML += '<span>connected' + '</span><br/>';
     connectionFlag = true; // 연결 상태로 설정
-
-    // 초기화
-    previousOnMessageArrived = client.onMessageArrived;
 }
 
+//각각의 열에 각자 출력
 function handleSensorValue(sensorType, value) {
 	var columnId = sensorType + "-column";
 	var columnDiv = document.getElementById(columnId);
@@ -100,9 +98,6 @@ function onMessageArrived(msg) { // 매개변수 msg는 도착한 MQTT 메시지
 	// 도착한 메시지 출력
 	var sensorType = msg.destinationName;
 	var value = msg.payloadString;
-
-	var messagesDiv = document.getElementById("messages");
-    messagesDiv.innerHTML = '<span>토픽 : ' + sensorType + ' | ' + value + '</span><br/>' + messagesDiv.innerHTML;
  
 	// 각 센서 타입에 따라 다른 열에 출력
 	if (sensorType === "luminant") {
