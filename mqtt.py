@@ -30,7 +30,7 @@ plantled.setInOut(6, "out") #생장용LED는 green색이다
 
 #비디오 관련 설정
 image_forder = '/home/pi/smartplanter/rasp-smartfarm/image/'
-video_name = '/home/pi/smartplanter/rasp-smartfarm/video/result.avi'
+video_name = '/home/pi/smartplanter/rasp-smartfarm/video/result.mp4'
 fps = 1
 
 #사진촬영 초 세기위해서
