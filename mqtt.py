@@ -27,12 +27,18 @@ hitter.setInOut(5, "out") #히터LED는 red색이다
 plantled.init()
 plantled.setInOut(6, "out") #생장용LED는 green색이다
 
+k = 0
 
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
 while True:
 	temp = temp_humid.getTemperature(temp_humid.sensor) #온도 읽기
 	humid = temp_humid.getHumidity(temp_humid.sensor) #습도 읽기
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
+
+	if k == 0:
+		waterpump.turn_on_pump_5second()
+		k = k + 1
+
 
 	#조도
 	if(luminant < 10):
