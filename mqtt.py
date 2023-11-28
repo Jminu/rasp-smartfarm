@@ -38,7 +38,7 @@ while True:
 
 	#10초마다 촬영
 	
-	if (count % 0) == 0:
+	if (count % 10) == 0:
 		camera.init_camera()
 		camera.shot_camera(count)
 
