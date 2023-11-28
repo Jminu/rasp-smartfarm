@@ -31,10 +31,10 @@ plantled.setInOut(6, "out") #생장용LED는 green색이다
 #비디오 관련 설정
 image_forder = '/home/pi/smartplanter/rasp-smartfarm/image/'
 video_name = '/home/pi/smartplanter/rasp-smartfarm/video/result.mp4'
-fps = 30
+fps = 1
 
 #사진촬영 초 세기위해서
-count = 0
+count = 1
 
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
 while True:
@@ -51,7 +51,7 @@ while True:
 	#이미지 10장 찍힐 때 마다
 	if (count % 100) == 0:
 		video.images_to_video('/home/pi/smartplanter/rasp-smartfarm/image/', video_name, fps)
-		
+
 
 	#조도
 	if(luminant < 10):
