@@ -56,7 +56,7 @@ function handleSensorValue(sensorType, value) {
         }
     };
 	*/
-	// 이미 등록된 콜백 함수가 없으면 등록
+	// 이미 등록된 콜백 함수가 없으면 등록 (동시에 출력되게 하려고하는거임)
     if (!client.onMessageArrived) {
         client.onMessageArrived = function (message) {
             var currentSensorType = message.destinationName;
