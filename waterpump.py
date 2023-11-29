@@ -31,6 +31,11 @@ def watering(pump1, pump2, pump3):
         led_on_off(pump3, 0)
         time.sleep(0.3)
 
+def watering_stop(pump1, pump2, pump3):
+    led_on_off(pump1, 0)
+    led_on_off(pump2, 0)
+    led_on_off(pump3, 0)
+
 if __name__ == "__main__":
     init()
     on_off = 1
