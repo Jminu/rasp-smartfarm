@@ -70,7 +70,7 @@ while True:
 		client.publish("luminant", "현재 조도 : "+str(luminant), qos=0)
 
 	#습도
-	if(humid < 50):
+	if(humid < 20):
 		#건조하면 경고메세지 나오고 물 펌프 작동
 		waterpump.watering(13, 19, 26)
 		client.publish("humidity", "수분이 부족합니다. 물 펌프 작동합니다", qos=0)
