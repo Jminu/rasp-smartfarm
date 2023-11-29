@@ -13,7 +13,12 @@ def on_connect(client, userdata, flag, rc): #브로커에 연결시
 	client.subscribe("led", qos = 0) #led구독 신청
 def on_message(client, userdata, msg) : #브로커 연결되고 
 	print("on_message connected to broker")
-	on_off = int(msg.payload)
+	try:
+		on_off = int(msg.payload)
+	except:
+		print("Invalid payload format, setting on_off to 0")
+		on_off = 0
+	
 	if on_off == 1:
 		waterpump.watering(13, 19, 26)
 	elif on_off == 0:
