@@ -6,7 +6,7 @@ import hitter #구현 완료
 import plantled #구현 완료
 import camera #구현 완료
 import video #구현 완료
-import waterpump #모터 작동 안됨
+import waterpump #모터 작동 안됨, LED로 대체
 
 def on_connect(client, userdata, flag, rc): #브로커에 연결시
 	print("connected to broker")

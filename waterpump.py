@@ -52,4 +52,4 @@ if __name__ == "__main__":
         on_off = 0 if on_off == 1 else 1 #0과 1의 토글링
         
     print()
-    GPIO.clenup()
+    GPIO.cleanup()
