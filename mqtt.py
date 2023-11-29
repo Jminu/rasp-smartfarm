@@ -5,13 +5,14 @@ import temp_humid #구현 완료
 import hitter #구현 완료
 import plantled #구현 완료
 import camera #구현 완료
-import video
+import video #구현 완료
 import waterpump #모터 작동 안됨
 
 def on_connect(client, userdata, flag, rc): #브로커에 연결시
 	print("connected to broker")
 def on_message(client, userdata, msg) : #브로커 연결되고 
 	print("on_message connected to broker")
+	waterpump.watering(13, 19, 26)
 
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
 
@@ -46,6 +47,8 @@ while True:
 	temp = temp_humid.getTemperature(temp_humid.sensor) #온도 읽기
 	humid = temp_humid.getHumidity(temp_humid.sensor) #습도 읽기
 	luminant = lumi.mcp.read_adc(0) #조도 읽기
+
+	client.publish("led", )
 
 	#5초마다 촬영
 	if (count % 5) == 0:

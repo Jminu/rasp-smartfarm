@@ -34,6 +34,10 @@
          <video width="640" height="480" controls autoplay muted>
             <source src="{{ url_for('static', filename='result.mp4') }}" type="video/mp4">
     </video>
+         <form id="LED-control-form">
+            <label>on <input type="radio" name="led" value="1" onchange="publish('led', this.value)"></label>
+            <label>off <input type="radio" name="led" value="0" checked onchange="publish('led', this.value)"><br><br></label>
+         </form>
          <hr>
          <div style="display:flex;">
             <!-- 첫 번째 열 -->
