@@ -93,6 +93,7 @@ function publish(topic, msg) {
 		return false;
 	}
 	client.send(topic, msg, 0, false);
+	return true;
 }
 
 function unsubscribe(topic) {
