@@ -13,7 +13,7 @@ def on_connect(client, userdata, flag, rc): #브로커에 연결시
 	client.subscribe("led", qos = 0) #led구독 신청
 def on_message(client, userdata, msg) : #브로커 연결되고 
 	print("on_message connected to broker")
-	if int(msg.payload) == 1:
+	if msg.payload == 1:
 		waterpump.watering(13, 19, 26)
 	else:
 		waterpump.watering_stop(13, 19, 26)
