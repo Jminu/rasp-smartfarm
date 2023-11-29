@@ -51,8 +51,7 @@ while True:
 	#이미지 10장 찍힐 때 마다 동영상 촬영
 	if (count % 50) == 0:
 		video.images_to_video('/home/pi/smartplanter/rasp-smartfarm/image/', video_name, fps)
-
-
+		client.publish()
 	#조도
 	if(luminant < 10):
 		#조도가 10 미만으로 나오면, 경고메세지 나오고 생장용 LED킨다
