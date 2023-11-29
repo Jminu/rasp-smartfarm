@@ -28,6 +28,11 @@ hitter.setInOut(5, "out") #히터LED는 red색이다
 plantled.init()
 plantled.setInOut(6, "out") #생장용LED는 green색이다
 
+waterpump.init() #워터펌프
+waterpump.setInOut(13, "out")
+waterpump.setInOut(19, "out")
+waterpump.setInOut(26, "out")
+
 #비디오 관련 설정
 image_forder = '/home/pi/smartplanter/rasp-smartfarm/image/'
 video_name = '/home/pi/smartplanter/rasp-smartfarm/static/result.mp4'
@@ -51,7 +56,7 @@ while True:
 	#이미지 10장 찍힐 때 마다 동영상 촬영
 	if (count % 50) == 0:
 		video.images_to_video('/home/pi/smartplanter/rasp-smartfarm/image/', video_name, fps)
-		
+
 	#조도
 	if(luminant < 10):
 		#조도가 10 미만으로 나오면, 경고메세지 나오고 생장용 LED킨다
@@ -62,8 +67,9 @@ while True:
 		client.publish("luminant", "현재 조도 : "+str(luminant), qos=0)
 
 	#습도
-	if(humid < 10):
+	if(humid < 50):
 		#건조하면 경고메세지 나오고 물 펌프 작동
+		waterpump.watering(13, 19, 26)
 		client.publish("humidity", "수분이 부족합니다. 물 펌프 작동합니다", qos=0)
 	else: #아니면 현재 습도 출력
 		client.publish("humidity", "현재 습도 : "+str(humid), qos=0)
