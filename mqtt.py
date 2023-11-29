@@ -12,8 +12,8 @@ def on_connect(client, userdata, flag, rc): #브로커에 연결시
 	print("connected to broker")
 	client.subscribe("led", qos = 0) #led구독 신청
 
-def on_message(client, userdata, msg) : #브로커 연결되고
-	print(msg.payload)
+def on_message(client, userdata, msg) : #브로커 연결되고 
+	printf(msg.payload)
 	print("on_message connected to broker")
 	try:
 		on_off = int(msg.payload)

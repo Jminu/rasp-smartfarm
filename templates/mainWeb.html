@@ -35,8 +35,8 @@
             <source src="{{ url_for('static', filename='result.mp4') }}" type="video/mp4">
     </video>
          <form id="LED-control-form">
-            <label>on <input type="radio" name="led" value="1" onclick="return publish('led', 1)"></label>
-            <label>off <input type="radio" name="led" value="0" onclick="return publish('led', 0)"><br><br></label>
+            <label>on <input type="radio" name="led" value="1" onclick="return publish('led', '1')"></label>
+            <label>off <input type="radio" name="led" value="0" onclick="return publish('led', '0')"><br><br></label>
          </form>
          <hr>
          <div style="display:flex;">
