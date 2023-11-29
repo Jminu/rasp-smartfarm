@@ -13,9 +13,10 @@ def on_connect(client, userdata, flag, rc): #브로커에 연결시
 	client.subscribe("led", qos = 0) #led구독 신청
 def on_message(client, userdata, msg) : #브로커 연결되고 
 	print("on_message connected to broker")
-	if int(msg.payload) == 1:
+	on_off = int(msg.payload)
+	if on_off == 1:
 		waterpump.watering(13, 19, 26)
-	elif int(msg.payload) == 0:
+	elif on_off == 0:
 		waterpump.watering_stop(13, 19, 26)
 
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
